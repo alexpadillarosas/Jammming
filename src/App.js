@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SearchBar from "./components/SearchBar/SearchBar";
+import SearchResults from "./components/SearchResults/SearchResults";
+import PlayList from "./components/PlayList/PlayList";
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.searchSpotify = this.searchSpotify.bind(this);
+  }
+
+  searchSpotify(word) {
+    console.log('this button was pressed and the word to search is ' + word );
+  }
+
+
+
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>Ja<span className="highlight">mmm</span>ing</h1>
+        <div className="App">
+          <SearchBar searchSpotify={this.searchSpotify}/>
+          <div className="App-playlist">
+            <SearchResults />
+            <PlayList />
+          </div>
+
+        </div>
       </div>
     );
   }
