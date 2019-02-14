@@ -2,7 +2,8 @@ import * as queryString from 'query-string';
 
 const CLIENT_ID = '88f41d79cf5f4106befab0fc516f4402';
 const RESPONSE_TYPE = 'token';
-const URI_CALLBACK = 'http://10.0.0.4:3000/callback'
+// const URI_CALLBACK = 'http://10.0.0.4:3000/callback'
+const URI_CALLBACK = 'http://alexjammming.surge.sh/callback';
 const CLIENT_GENERATED_TOKEN = 'test';
 const SCOPE = 'user-read-private%20user-read-email%20playlist-modify-public%20playlist-modify-private';
 const SHOW_DIALOG = true;
@@ -13,7 +14,6 @@ const USER_CREDENTIALS = BASE_ENDPOINT + "/me";
 const USER_PLAYLIST = BASE_ENDPOINT + "/users";
 
 let accessToken;
-let userId;
 
 const Spotify = {
   logIn() {
@@ -23,15 +23,15 @@ const Spotify = {
 
   },
   retrieveToken() {
-    {/* check the URL*/}
+    /* check the URL*/
     const query = queryString.parse(window.location.hash);
     console.log(query);
-    {/* there is a token in the URL */}
+    /* there is a token in the URL */
     if(query.access_token){
       accessToken = query.access_token;
       return accessToken;
     }else{
-      {/*redirect to spotify website*/}
+      /*redirect to spotify website*/
       this.logIn();
     }
   },
@@ -41,7 +41,7 @@ const Spotify = {
         if(!accessToken){
           accessToken = this.retrieveToken();
         }
-        {/* Fetch all data */}
+        /* Fetch all data */
         console.log(accessToken);
         let endpoint = `${SEARCH_ENDPOINT}?q=${word}&type=track`;
         console.log(endpoint);
@@ -53,7 +53,7 @@ const Spotify = {
         }).then( response => {
             return response.json();
         }).then(jsonResponse => {
-            {/*console.log(jsonResponse);*/}
+            /*console.log(jsonResponse);*/
             if(jsonResponse.tracks.items){
               return jsonResponse.tracks.items.map( item => {
                 return {
@@ -68,7 +68,7 @@ const Spotify = {
             }
         })
 
-    
+
   },
 
   getUserCredentials() {
@@ -97,7 +97,7 @@ const Spotify = {
     const accessToken = this.retrieveToken();
     let userId;
     let playlistId;
-    let snapshotid;
+
 
     if(name !== '' && tracks !== ''){
       this.getUserCredentials().then( response => {

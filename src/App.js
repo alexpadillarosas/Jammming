@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import SearchBar from "./components/SearchBar/SearchBar";
 import SearchResults from "./components/SearchResults/SearchResults";
@@ -31,7 +30,7 @@ class App extends Component {
   searchSpotify(word) {
 
     //  only search when something has been input
-    if(word != ''){
+    if(word !== ''){
        Spotify.search(word).then( tracks => {
          //removing songs that have been already added to the playlist
          for( var i=tracks.length - 1; i>=0; i--){
@@ -97,25 +96,11 @@ class App extends Component {
     // reset playlist back to new and empty
     this.setState({playListTracks: [], playListName: DEFAULT_PLAYLIST_NAME});
 
-    {/*
-    let credentials ;
-    let pr = Promise.resolve(Spotify.getUserCredentials()).then(function(value){
-      console.log(value);
-      credentials = value;
-    });
-
-    console.log('credentials: ' + credentials);
-    */}
 
   }
 
   render() {
-    {/*
-    const parsed = queryString.parse(window.location.hash); // https://github.com/sindresorhus/query-string
-    console.log(parsed);
-    console.log(parsed.access_token);
-    addTrack={this.addTrack}
-    */}
+
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
