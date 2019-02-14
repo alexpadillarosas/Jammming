@@ -10,6 +10,13 @@ class SearchBar extends React.Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleWordChange = this.handleWordChange.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
+  }
+
+  handleEnter(e) {
+    if (e.keyCode === 13){
+      this.props.searchSpotify(this.state.word);
+    }
   }
 
   handleWordChange(e) {
@@ -24,7 +31,10 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="SearchBar">
-          <input placeholder="Enter A Song Title" onChange={this.handleWordChange}/>
+          <input placeholder="Enter A Song Title"
+                type="text"
+                onChange={this.handleWordChange}
+                onKeyDown={this.handleEnter}/>
           <a onClick={this.handleSearch}>SEARCH</a>
       </div>
     )
